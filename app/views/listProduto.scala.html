@@ -1,0 +1,9 @@
+@(produtos : List[Produto])
+
+@main("Listagem"){
+
+    @for(p <- produtos){
+        @p.nome - @p.descricao - @p.preco
+    }
+
+}
