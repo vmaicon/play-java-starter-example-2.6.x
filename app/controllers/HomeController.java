@@ -21,7 +21,8 @@ public class HomeController extends Controller {
     }
 
     public Result cadastroDeProduto(){
-        Form<Produto> formularioDeProduto = formFactory.form(Produto.class);
+        Form<Produto> formularioDeProduto = formFactory
+        .form(Produto.class);
         return ok(cadastroDeProduto.render("Cadatro",formularioDeProduto));
     }
 
@@ -38,12 +39,25 @@ public class HomeController extends Controller {
         //atribui os dados ao objeto produto
         produto = formProduto.get() ;
         //salva o produto
-        produto.save();
+        if(produto.id != null)
+            produto.update();
+        else
+            produto.save();
         //notifica o usuário que o produto foi salvo
         flash("success", "Novo produto adicionado: "+produto.nome);
 
         //redireciona para a tela de cadastro novamente
-        return redirect(routes.HomeController.cadastroDeProduto());
+        return redirect(routes.HomeController.listaTudo());
+    }
+
+    public Result editarProduto(Long id){
+        Produto p = produto.find.byId(id);
+        Form<Produto> formProduto = 
+        formFactory.form(Produto.class).fill(p);
+        
+        return ok(cadastroDeProduto
+        .render("Editar",formProduto));
+
     }
 
     public Result listaTudo(){

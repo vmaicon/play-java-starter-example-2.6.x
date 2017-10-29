@@ -2,8 +2,34 @@
 
 @main("Listagem"){
 
-    @for(p <- produtos){
-        @p.nome - @p.descricao - @p.preco
-    }
+    <h1 class="display-3">Lista de produtos</h1>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+        @for(p <- produtos){
+            <tr>
+                <th scope="row">@p.id</th>
+                <td>@p.nome</td>
+                <td>@p.descricao</td>
+                <td>@p.preco</td>
+                <td>
+                    <a href="/produtos/edit/@p.id" 
+                        class="btn btn-primary">Editar</a>
+                </td>
+              </tr>
+        }
+    </tbody>
+    </table>
+    <a href="/produtos" 
+    class="btn btn-primary">Novo Produto</a>
+
 
 }

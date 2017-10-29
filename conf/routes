@@ -9,6 +9,7 @@ POST    /produtos/novo              controllers.HomeController.cadastroDeNovoPro
 
 GET     /produtos/list              controllers.HomeController.listaTudo
 
+GET     /produtos/edit/:id          controllers.HomeController.editarProduto(id: Long)
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
